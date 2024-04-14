@@ -7,20 +7,28 @@ do
 {
     Console.WriteLine();
     Console.WriteLine("Here are your pick 3 numbers!");
-    int iLast = -1, iThis;
+    int iLastBall = int.MinValue;
+    Dictionary<int, int> Balls = new Dictionary<int, int>();
     for (int iRoll = 0; iRoll < 3; ++iRoll)
     {
+        bool bBall = false;
         do
         {
-            iThis = Rnd.Next(1, 26);
+            int iBall = Rnd.Next(1, 26);
+            if (!Balls.ContainsValue(iBall))
+            {
+                if (Math.Abs(iBall - iLastBall) > 6)
+                {
+                    iLastBall = iBall;
+                    Balls[iRoll] = iBall;
+                    bBall = true;
+                }
+            }
         }
-        while (iThis == iLast);
-        if (iRoll > 0)
-            Console.Write(" ");
-        Console.Write(iThis);
-        iLast = iThis;
+        while (!bBall);
     }
-
+    foreach (KeyValuePair<int, int> Ball in Balls)
+        Console.Write(Ball.Value + " ");
     Console.WriteLine();
     Console.WriteLine();
 
