@@ -1,4 +1,4 @@
-﻿Random Rnd = new Random((int)DateTime.Today.Ticks & 0x0000FFFF);
+﻿Random Rnd = new Random((int)DateTime.Now.Ticks & 0x00FFFFFF);
 Console.WriteLine(string.Format("Today is {0}", DateTime.Now.ToLongDateString()));
 Console.WriteLine();
 Console.WriteLine("Hello Reasors Monopoly!");
